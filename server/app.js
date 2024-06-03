@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser')
 const cookParser = require('cookie-parser')
 const mongoose = require('mongoose')
@@ -10,24 +11,35 @@ const  userRoute = require('./routes/Book/userRoute');
 const app = express();
 const port = process.env.PORT || 8000
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-  });
+
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://library-management-system2.netlify.app'
+];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true
+}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookParser())
 app.use(express.json())
 
 
-app.use((req, res, next) => {
-    if (req.url.endsWith('.js')) {
-        res.setHeader('Content-Type', 'application/javascript');
-    }
-    next();
-});
+// app.use((req, res, next) => {
+//     if (req.url.endsWith('.js')) {
+//         res.setHeader('Content-Type', 'application/javascript');
+//     }
+//     next();
+// });
 
 //server static file 
 app.use(express.static('public'));
@@ -45,5 +57,6 @@ app.use('/user', userRoute)
 
 
 app.listen(port, (req, res) => {
+    res.setHeader()
     console.log("app listenning on port 8000")
 })

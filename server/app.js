@@ -12,16 +12,10 @@ const app = express();
 const port = process.env.PORT || 8000
 
 
-const corsOptions = {
-    origin: 'https://library-management-system2.netlify.app',
-    credentials: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  };
-
-app.use(cors(corsOptions))
-app.options('*', cors(corsOptions))
-
+app.use(cors({
+    origin: '*',
+   methods: ['GET', 'POST']
+}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookParser())

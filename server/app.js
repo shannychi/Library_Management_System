@@ -57,6 +57,5 @@ app.use('/user', userRoute)
 
 
 app.listen(port, (req, res) => {
-    res.setHeader()
     console.log("app listenning on port 8000")
 })

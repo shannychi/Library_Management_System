@@ -17,18 +17,7 @@ const allowedOrigins = [
     'https://library-management-system2.netlify.app'
 ];
 
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
-     optionsSuccessStatus: 200,
-    credentials: true
-}))
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookParser())

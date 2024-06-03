@@ -26,6 +26,7 @@ app.use(cors({
         }
         return callback(null, true);
     },
+     optionsSuccessStatus: 200,
     credentials: true
 }))
 app.use(bodyParser.urlencoded({extended: false}))
@@ -35,10 +36,9 @@ app.use(express.json())
 
 
 app.use((req, res, next) => {
-    if (req.url.endsWith('.js')) {
-        res.setHeader('Content-Type', 'application/javascript');
-    }
-    next();
+ res.header('Access-Control-Allow-Origin', 'https://library-management-system2.netlify.app');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
 
 //server static file 

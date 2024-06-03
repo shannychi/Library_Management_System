@@ -13,7 +13,7 @@ const port = process.env.PORT || 8000
 
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://library-management-system2.netlify.app/',
     credentials: true
 }))
 app.use(bodyParser.urlencoded({extended: false}))

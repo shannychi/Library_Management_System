@@ -27,6 +27,7 @@ const SignupPage = () => {
         try{
             const response = await fetch('http://localhost:8000/user/signup', {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },

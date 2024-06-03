@@ -12,25 +12,14 @@ const app = express();
 const port = process.env.PORT || 8000
 
 
-const allowedOrigins = [
-    'http://localhost:5173',
-    'https://library-management-system2.netlify.app'
-];
-
-app.use(cors())
+app.use(cors({
+    origin: 'https://library-management-system2.netlify.app',
+    credentials: true
+}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookParser())
 app.use(express.json())
-
-
-app.use((req, res, next) => {
- res.header('Access-Control-Allow-Origin', 'https://library-management-system2.netlify.app');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-//server static file 
 app.use(express.static('public'));
 
 //datebase connection
@@ -45,6 +34,6 @@ app.use('/book', BookRoutes);
 app.use('/user', userRoute)
 
 
-app.listen(port, (req, res) => {
+app.listen(port, () => {
     console.log("app listenning on port 8000")
 })

@@ -34,12 +34,11 @@ app.use(cookParser())
 app.use(express.json())
 
 
-// app.use((req, res, next) => {
-//     if (req.url.endsWith('.js')) {
-//         res.setHeader('Content-Type', 'application/javascript');
-//     }
-//     next();
-// });
+app.use((req, res, next) => {
+    if (req.url.endsWith('.js')) {
+    }
+    next();
+});
 
 //server static file 
 app.use(express.static('public'));

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cookParser = require('cookie-parser')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const path = require('path')
 
 const  BookRoutes = require('./routes/Book/bookRoute');
 const  userRoute = require('./routes/Book/userRoute');
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookParser())
 app.use(express.json())
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //datebase connection
 const mogoDb = process.env.MONGODB_URL

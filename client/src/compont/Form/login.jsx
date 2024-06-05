@@ -25,7 +25,6 @@ const LoginPage = () => {
         e.preventDefault();
         try{
             const response = await fetch('http://localhost:8000/user/login', {
-                mode: 'no-cors',
                 method: 'POST',
                 credentials: 'include',
                 headers: {

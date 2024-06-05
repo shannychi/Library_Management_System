@@ -13,7 +13,7 @@ const app = express();
 const port = process.env.PORT || 8000
 
 
-const allowedOrigins = ['http://localhost:5173', 'https://library-management-system2.netlify.app/'];
+const allowedOrigins = ['http://localhost:5173', 'https://library-management-system2.netlify.app'];
 
 
 app.use(cors({

@@ -38,6 +38,6 @@ app.use('/book', BookRoutes);
 app.use('/user', userRoute)
 
 
-app.listen(port, () => {
-    console.log("app listenning on port 8000")
+app.listen(process.env.PORT, '0.0.0.0', function(err) {
+    console.log("app listenning on port 8000", app.url)
 })

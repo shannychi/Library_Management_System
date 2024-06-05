@@ -85,7 +85,7 @@ const SignupPage = () => {
         <input type="password" id="password" value={user.password} name="password" class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full" placeholder="Password" onChange={handleChange}/>
       </div>
       
-      <button class="bg-gradient-to-b from-cyan-700 to-cyan-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded">sign up</button>
+      <button class="bg-gradient-to-b from-cyan-700 to-cyan-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded hover:bg-cyan-500 active:bg-cyan-700">sign up</button>
       <a href="/login" className="text-sm font-thin text-cyan-900  hover:text-cyan-500">Already registered? log in</a>
     </form>
    

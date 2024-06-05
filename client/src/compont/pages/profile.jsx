@@ -31,7 +31,7 @@ const UserProfile = () => {
       } catch (err) {
         console.error("Error fetching borrowed books:", err);
         setError("Server error");
-        navigator("./500");
+        navigator("/500");
       } finally {
         setTimeout(() => {
           setLoading(false);

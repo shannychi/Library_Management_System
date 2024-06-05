@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Message } from "primereact/message";
+import { Alert } from "@mui/material";
 
 
 const SignupPage = () => {
@@ -35,16 +35,16 @@ const SignupPage = () => {
             });
             if(response.status === 409){
               const data = await response.json();
-              setMessage(<Message severity="error">{data.message}</Message>); //user already exits
+              setMessage(<Alert severity="error">{data.message}</Alert>); //user already exits
             }
             else if (response.status === 201) {
               const data = await response.json();
-               setMessage(<Message severity="success">{data.message}</Message>);
+               setMessage(<Alert severity="success">{data.message}</Alert>);
                 navigate('/login')
                
             }
             else {
-              setMessage(<Message severity="error">An error occured</Message>)
+              setMessage(<Alert severity="error">An error occured</Alert>)
             }
             console.log(response.data);
         }catch(err) {

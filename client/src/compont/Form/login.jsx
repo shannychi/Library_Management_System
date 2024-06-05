@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { Message } from "primereact/message";
-
+import { Alert } from "@mui/material";
 
 const LoginPage = () => {
 
@@ -35,15 +34,15 @@ const LoginPage = () => {
             });
             if(response.status === 404){
               const data = await response.json();
-              setMessage(<Message severity="error">{data.message}</Message>); //user does not exits
+              setMessage(<Alert severity="error">{data.message}</Alert>); //user does not exits
             }
             else if(response.status == 401) {
               const data = await response.json();
-              setMessage(<Message severity="error">{data.message}</Message>); //incorrect password
+              setMessage(<Alert severity="error">{data.message}</Alert>); //incorrect password
             }
             else if (response.status === 200) {
               const data = await response.json();
-               setMessage(<Message severity="success">{data.message}</Message>);
+               setMessage(<Alert severity="success">{data.message}</Alert>);
                 navigate('/user')
                
             }

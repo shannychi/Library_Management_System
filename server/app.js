@@ -17,8 +17,11 @@ const allowedOrigins = ['http://localhost:5173', 'https://library-management-sys
 
 app.use(cors({
     origin:  allowedOrigins,
-   methods: ['GET', 'POST']
+   methods: ['GET', 'POST'],
+   credentials: true
 }))
+
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookParser())

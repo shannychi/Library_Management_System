@@ -7,10 +7,10 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb("null", 'public/uploads/'); // specify the upload directory
+    cb(null, 'public/uploads/'); // specify the upload directory
   },
   filename: function (req, file, cb) {
-    cb("null", Date.now() + '-' + file.originalname); // unique file names
+    cb(null, Date.now() + '-' + file.originalname); // unique file names
   },
 });
 
@@ -23,7 +23,7 @@ module.exports = {
       if (err) {
         return res.status(400).json({ message: err.message });
       }
-      if (req.file === undefined) {
+      if (!req.file) {
         return res.status(400).json({ message: "No file selected!" });
       }
 

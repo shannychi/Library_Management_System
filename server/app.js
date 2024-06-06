@@ -13,11 +13,20 @@ const app = express();
 const port = process.env.PORT || 8000
 
 
-const allowedOrigins = ['http://localhost:5173', 'https://library-management-system2.netlify.app'];
+var whitelist = ['http://localhost:5173', 'https://library-management-system2.netlify.app'];
+var corsOptions = {
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    }
+  }
 
 
 app.use(cors({
-    origin: allowedOrigins,
+    corsOptions,
     credentials: true 
   }));
 
@@ -40,6 +49,6 @@ app.use('/book', BookRoutes);
 app.use('/user', userRoute)
 
 
-app.listen(port, '0.0.0.0', function(err) {
-    console.log("app listenning on port 8000", app.url)
+app.listen(port,  function(err) {
+    console.log("app listenning on port 8000", err)
 })

@@ -81,12 +81,14 @@ module.exports = {
   profile: async (req, res, next) => {
     try{
       const userId = req.userId
-      const getAllBorrowedBook = await borrowedBook.find({ userId, active: true }, {'createdAt': -1})
+      const getAllBorrowedBook = await borrowedBook.find({ userId, active: true })
+      .sort({ createAt: -1})
       .populate("bookId")
         return  res.status(200).json(getAllBorrowedBook)
 
     }catch(err) {
       console.log(err)
+      res.status(500).json({message: "server error"})
     }
   }
 };

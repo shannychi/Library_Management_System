@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const libraryUser = require('../Model/user')
+const libraryUser = require('../Model/user');
 
 const auth = async (req, res, next) => {
   try {
@@ -8,16 +8,14 @@ const auth = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ message: "Unauthorized, please login" });
     }
-    console.log("Extracted Token:", token);
 
-    // Verify and decode the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded?.userId;
     const role = decoded?.role;
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized, please login" });
     }
-    console.log('userId:', userId)
+
     req.userId = userId;
     req.role = role;
     next();
@@ -27,7 +25,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-
-    module.exports = {
-      auth
-    }
+module.exports = auth;

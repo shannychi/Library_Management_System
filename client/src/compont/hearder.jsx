@@ -6,7 +6,7 @@ const [data, setData] = useState({user_count:0, book_count:0});
 useEffect(() => {
     const fetchData = async() => {
         try{
-            const response = await fetch('http://localhost:8000/book/totaldata');
+            const response = await fetch('https://library-management-system-2ku8.onrender.com/book/totaldata');
             const result = await response.json();
             setData(result);
         }catch(err) {

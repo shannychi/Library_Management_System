@@ -157,7 +157,7 @@ const Books = () => {
         <Paginator
           className="gap-5 h-20 w-full mt-5 lg:mt-0 "
           first={first}
-          rows={1}
+          rows={5}
           totalRecords={200}
           onPageChange={onPageChange}
           template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"

@@ -58,7 +58,7 @@ const Books = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8000/book/borrow/${bookId}`,
+        `https://library-management-system-2ku8.onrender.com/book/borrow/${bookId}`,
         {
           method: "POST",
           credentials: "include",
@@ -201,7 +201,7 @@ const Books = () => {
                     <div className="flex gap-2">
                       <Image
                         className="object-cover rounded-xl h-40 w-40"
-                        src={`http://localhost:8000${book.cover_image}`}
+                        src={`https://library-management-system-2ku8.onrender.com${book.cover_image}`}
                         alt="Product"
                       />
                       <Button

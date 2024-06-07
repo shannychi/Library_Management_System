@@ -98,7 +98,7 @@ const UserProfile = () => {
                 className="flex justify-between  border  text-center items-center rounded-md cursor-pointer transition duration-500 shadow-sm hover:shadow-md hover:shadow-teal-400"
               >
                <div className="w-16 p-2 shrink-0">
-               <img class="object-cover w-full h-full" src={`http://localhost:8000${borrowedBook.bookId.cover_image}`} alt="Product"/>
+               <img class="object-cover w-full h-full" src={`https://library-management-system-2ku8.onrender.com${borrowedBook.bookId.cover_image}`} alt="Product"/>
                   </div>
                 <div className="p-2 flex flex-col">
                   <div className="flex flex-col ">

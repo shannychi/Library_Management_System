@@ -49,56 +49,45 @@ const LoginPage = () => {
   };
   return (
     <>
-      <div class="bg-blue-100 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center">
-        <div class="bg-white lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl">
-          {/* <div class="bg-gray-800 shadow shadow-gray-200 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full p-4 md:p-8">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="#FFF">
-        <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-      </svg>
-    </div> */}
-          {message && <p>{message}</p>}
-          <form class="p-12 md:p-24" onSubmit={handleFormSubmit}>
-            <div class="flex items-center text-lg mb-6 md:mb-8">
-              <svg class="absolute ml-3" width="24" viewBox="0 0 24 24">
-                <path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z" />
-              </svg>
-              <input
-                type="text"
-                id="username"
-                name="email"
-                class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
-                placeholder="email"
-                onChange={handleChange}
-              />
-            </div>
+      <div class="bg-white dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center">
+         
+          <form onSubmit={handleFormSubmit}>
+            <div class="bg-white px-10 py-8 rounded-xl w-screen  shadow-large max-w-sm">
+                <div class="space-y-4">
+                {message && <p>{message}</p>}
+                    <h1 class="text-center text-2xl font-semibold text-gray-600">Login</h1>
+                    <hr/>
+                <div class="flex items-center border-2 py-2 px-3 rounded-md mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                    </svg>
+                    <input class="pl-2 outline-none border-none w-full" type="email" name="email" placeholder="Email" onChange={handleChange} required/>
 
-            <div class="flex items-center text-lg mb-6 md:mb-8">
-              <svg class="absolute ml-3" viewBox="0 0 24 24" width="24">
-                <path d="m18.75 9h-.75v-3c0-3.309-2.691-6-6-6s-6 2.691-6 6v3h-.75c-1.24 0-2.25 1.009-2.25 2.25v10.5c0 1.241 1.01 2.25 2.25 2.25h13.5c1.24 0 2.25-1.009 2.25-2.25v-10.5c0-1.241-1.01-2.25-2.25-2.25zm-10.75-3c0-2.206 1.794-4 4-4s4 1.794 4 4v3h-8zm5 10.722v2.278c0 .552-.447 1-1 1s-1-.448-1-1v-2.278c-.595-.347-1-.985-1-1.722 0-1.103.897-2 2-2s2 .897 2 2c0 .737-.405 1.375-1 1.722z" />
-              </svg>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
-                placeholder="Password"
-                onChange={handleChange}
-              />
+                </div>
+                <div class="flex items-center border-2 py-2 px-3 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                    </svg>
+                    <input class="pl-2 outline-none border-none w-full" type="password" name="password"  id="" onChange={handleChange} placeholder="Password" required/>
+                    
+                </div>
+                </div>
+
+                <button type="submit"  id="login" class="mt-6 w-full shadow-xl bg-gradient-to-tr from-cyan-600 to-red-700 hover:to-red-500 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000">Login</button>
+                <hr/>
+                <div class="flex justify-center items-center mt-4">
+                    <p class="inline-flex items-center text-gray-700 font-medium text-xs text-center">
+                        <span class="ml-2">You don't have an account?<a href="/signup" class="text-xs ml-2 text-blue-500 font-semibold">Register now &rarr;</a>
+                        </span>
+                    </p>
+                </div>
             </div>
-            <button
-              type="submit"
-              class="bg-cyan-950 font-medium p-2 md:p-4 text-white uppercase w-full rounded hover:bg-cyan-500 "
-            >
-              Login
-            </button>
-            <a
-              href="/signup"
-              className="text-sm font-thin text-cyan-900  hover:text-cyan-500"
-            >
-              don't have an account? sign Up
-            </a>
-          </form>
-        </div>
+            <div class="pt-6 text-base font-semibold leading-7">
+                <p class="font-sans text-red-500 text-md hover:text-red-800">
+                <a href="/" className="absolute text-cyan-800">&larr; Home</a>
+                </p>
+            </div>
+        </form>
       </div>
     </>
   );

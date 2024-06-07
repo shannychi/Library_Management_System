@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { NextUIProvider } from '@nextui-org/react'
 import { BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom'
+
 import Navbar from './compont/navbar'
 import Footer from './compont/Footer'
 import AddBook from './compont/Form/AddBook'
@@ -12,12 +14,10 @@ import ServerError from './compont/pages/serverError'
 import BorrowBook from './compont/pages/Borrow'
 
 function App() {
-const location = useLocation();
-const noNavBarRouts = ['/add-book','/user', '/borrow/book', '/500', '/books']
 
   return (
     <>
-    {!noNavBarRouts.includes(location.pathname) && <Navbar/>}
+  <Navbar/>
      <Routes>
       <Route path='/' element={<HomePage/>}/>
      <Route path='/add-book' element={<AddBook/>}/>

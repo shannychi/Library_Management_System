@@ -6,7 +6,7 @@ const BorrowBook = () => {
   useEffect(() => {
     const fetchBooksData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/book/borrow/:bookId', {
+        const response = await fetch('https://library-management-system-2ku8.onrender.com/book/borrow/:bookId', {
           method: 'POST',
           credentials: 'include',
           headers: {

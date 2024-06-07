@@ -16,7 +16,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchBorrowedBooks = async () => {
       try {
-        const response = await fetch("http://localhost:8000/user/profile", {
+        const response = await fetch("https://library-management-system-2ku8.onrender.com/user/profile", {
           method: "GET",
           credentials: "include",
           headers: {

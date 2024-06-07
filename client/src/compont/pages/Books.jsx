@@ -29,7 +29,7 @@ const Books = () => {
   useEffect(() => {
     const fetchBooksData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/book/books", {
+        const response = await fetch("https://library-management-system-2ku8.onrender.com/book/books", {
           method: "GET",
           credentials: "include",
           headers: {

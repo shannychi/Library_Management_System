@@ -10,8 +10,8 @@ import { BookLogo } from "./Function/BookLogo";
       const menuItems = [
         <Link href="/">Home</Link>,
         <Link href="/login">Login</Link>,
-        <Link href="/books">Book Store</Link>,
-        <Link href="/add-book">Add Book</Link>,
+        <Link href="/login">Book Store</Link>,
+        <Link href="/login">Add Book</Link>,
         <Link href="#">Log Out</Link>
       ];
     
@@ -35,7 +35,7 @@ import { BookLogo } from "./Function/BookLogo";
               </Link>
             </NavbarItem>
             <NavbarItem isActive>
-              <Link href="/" aria-current="page" className=" text-white underline">
+              <Link href="/login" aria-current="page" className=" text-white underline">
                 Book store
               </Link>
             </NavbarItem>

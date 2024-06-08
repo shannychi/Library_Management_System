@@ -38,7 +38,7 @@ module.exports = {
         httpOnly: true,
         secure:  process.env.NODE_ENV === 'production',
         sameSite: 'None',
-        maxAge: 1000 * 60 * 60 * 1,
+        maxAge:1000 * 60 * 60 * 24,
       });
       return res.status(200).json({ message: "Login successful" });
     } catch (err) {

@@ -10,13 +10,19 @@ import LogOut from "./Form/logout";
       const [isMenuOpen, setIsMenuOpen] = React.useState(false);
       const { isAuthenticated, logout } = useAuth();
     
-      const menuItems = [
-        <Link href="/">Home</Link>,
-        <Link href="/login">Login</Link>,
-        <Link href="/login">Book Store</Link>,
-        <Link href="/login">Add Book</Link>,
-        <Link href="#">Log Out</Link>
-      ];
+      const menuItems = [isAuthenticated ? (
+        <div className="flex flex-col gap-1">
+          <Link href="/">Home</Link>
+          <Link href="/user">Profile</Link>
+          <Link href="/books">Book Store</Link>
+          <LogOut />
+        </div>
+      ) : (
+        <div className="flex flex-col gap=1">
+          <Link href="/login">Login</Link>
+          <Link href="/signup">Sign Up</Link>
+        </div>
+      )];
     
       return (
         <Navbar onMenuOpenChange={setIsMenuOpen} className=" bg-cyan-800 text-white">

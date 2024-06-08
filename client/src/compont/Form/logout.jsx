@@ -7,7 +7,7 @@ export default function LogOut() {
     const handleLogout = async () => {
         try {
           const response = await fetch('https://library-management-system-2ku8.onrender.com/user/logout', {
-            method: 'POST',
+            method: 'GET',
             credentials: 'include', 
           });
     

@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, cn} from "@nextui-org/react";
 import {useAuth} from "../Function/AuthContext"
 
+
 export default function LogOut() {
-  
-    const {logout} = useAuth()
+  const navigate = useNavigate();
+    const {logout} = useAuth();
     const handleLogout = async () => {
         try {
           const response = await fetch('https://library-management-system-2ku8.onrender.com/user/logout', {
@@ -14,7 +16,7 @@ export default function LogOut() {
     
           if (response.status === 200) {
             logout();
-            window.location.href = '/login';
+            navigate('/login');
           } else {
             console.error('Failed to log out');
           }

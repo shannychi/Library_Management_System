@@ -17,5 +17,6 @@ const { userController } = require("../../controller/index")
 userRoute.post("/login", userController.Login);
 userRoute.post("/signup", userController.Signup);
 userRoute.get("/profile",auth, userController.profile)
+userRoute.get("/logout",auth, userController.logout)
 
 module.exports = userRoute;

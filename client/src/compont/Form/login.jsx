@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
+import {useAuth} from "../Function/AuthContext"
 
 const LoginPage = () => {
   const [user, setUser] = useState({
@@ -9,6 +10,7 @@ const LoginPage = () => {
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   //handle change
   const handleChange = (e) => {
@@ -38,6 +40,7 @@ const LoginPage = () => {
         setMessage(<Alert severity="error">{data.message}</Alert>); //incorrect password
       } else if (response.status === 200) {
         setMessage(<Alert severity="success">{data.message}</Alert>);
+        login();
         navigate("/user");
       } else {
         setMessage(<Alert severity="error">An error occured!</Alert>);

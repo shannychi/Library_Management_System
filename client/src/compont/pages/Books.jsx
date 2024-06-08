@@ -165,12 +165,7 @@ const Books = () => {
 
       <div>
         {message && <div>{message}</div>}
-        <a
-          href="/user"
-          class="cursor-pointer duration-200 hover:scale-125 active:scale-100 ml-10 font-bold text-cyan-400 "
-        >
-          Go Back
-        </a>
+       
         <motion.ul variants={container} initial="hidden" animate="show" className=" grid grid-cols-1 md:grid-cols-3 gap-8 m-10">
           {displayBooks.map((book, index) => (
             <motion.li variants={item} key={index}>

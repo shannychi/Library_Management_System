@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NextUIProvider } from '@nextui-org/react'
+import { AuthProvider } from './compont/Function/AuthContext'
 import { BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom'
 
 import Navbar from './compont/navbar'
@@ -16,8 +16,8 @@ import BorrowBook from './compont/pages/Borrow'
 function App() {
 
   return (
-    <>
-  <Navbar/>
+   <AuthProvider>
+    <Navbar/>
      <Routes>
       <Route path='/' element={<HomePage/>}/>
      <Route path='/add-book' element={<AddBook/>}/>
@@ -28,9 +28,8 @@ function App() {
      <Route Path='/borrow/book' element={<BorrowBook/>}/>
      <Route path='/500' element={<ServerError/>}/>
      </Routes>
-    <Footer/>
-    
-    </>
+     <Footer/>
+   </AuthProvider>
   )
 }
 

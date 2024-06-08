@@ -2,10 +2,13 @@ import { useState } from "react";
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
 import { BookLogo } from "./Function/BookLogo";
+import { useAuth } from "./Function/AuthContext";
+import LogOut from "./Form/logout";
 
 
     export default function App() {
       const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+      const { isAuthenticated, logout } = useAuth();
     
       const menuItems = [
         <Link href="/">Home</Link>,
@@ -28,23 +31,23 @@ import { BookLogo } from "./Function/BookLogo";
             </NavbarBrand>
           </NavbarContent>
     
-          <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          {isAuthenticated ? (
+            <NavbarContent className="hidden sm:flex gap-4" justify="center">
             <NavbarItem>
-              <Link color="foreground" href="/" className=" text-white underline">
-                Home
-              </Link>
+              <LogOut/>
             </NavbarItem>
             <NavbarItem isActive>
-              <Link href="/login" aria-current="page" className=" text-white underline">
+              <Link href="/books" aria-current="page" className=" text-white underline">
                 Book store
               </Link>
             </NavbarItem>
-            {/* <NavbarItem>
-              <Link color="foreground" href="#">
-                Integrations
+            <NavbarItem>
+              <Link color="foreground" href="/user" className=" text-white underline" >
+                Profile
               </Link>
-            </NavbarItem> */}
+            </NavbarItem>
           </NavbarContent>
+          ):(
           <NavbarContent justify="end">
             <NavbarItem className="hidden lg:flex">
               <Link href="/login" className=" text-white underline">Login</Link>
@@ -55,6 +58,8 @@ import { BookLogo } from "./Function/BookLogo";
               </Button>
             </NavbarItem>
           </NavbarContent>
+          )}
+          
           <NavbarMenu>
             {menuItems.map((item, index) => (
               <NavbarMenuItem key={`${item}-${index}`}>

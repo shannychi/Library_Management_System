@@ -59,7 +59,7 @@ const UserProfile = () => {
               href="/books"
               className="flex   text-cyan-800 border border-cyan-800 py-2 px-6 gap-2 rounded mb-10 items-center"
             >
-              <span>Books</span>
+              <span>View All Books</span>
               <svg
                 fill="none"
                 stroke="currentColor"
@@ -74,10 +74,10 @@ const UserProfile = () => {
             </a>
             <img src={Go3} className="w-20 h-20" />
             <h3 className="text-xl font-medium mt-4 text-gray-700 dark:text-gray-200">
-            See All Books {" "}
+            <span className="text-2xl text-red-400">Oops!</span>  You do not have any borrowed book {" "}
             </h3>
             <p className="text-gray-500 dark:text-gray-400 mt-2">
-              You have not borrowed any book
+             checked out the book store
             </p>
           </div>
         </div>

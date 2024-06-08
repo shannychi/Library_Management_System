@@ -91,6 +91,17 @@ module.exports = {
       console.log(err)
       res.status(500).json({message: "server error"})
     }
-  }
+  },
+
+  logout: async (req, res, next) => {
+    try {
+      res.cookie("token", "");
+      return res.status(200).json({message: "you have successfully logged out"})
+      
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "server error" });
+    }
+  },
 };
 

@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
   if(authCookie) {
     setIsAuthenticated(true)
   }
-  setIsAuthenticated(false)
  }, []);
 
  const login = () => {
@@ -23,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   setIsAuthenticated(true);
  };
  const logout = () => {
-  Cookies.set('auth');
+  Cookies.remove('auth');
   setIsAuthenticated(false);
  }
 

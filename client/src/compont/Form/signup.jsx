@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Alert } from "@mui/material";
+import DropdownRole from "../Function/dropdown"
+import {  Checkbox } from "@nextui-org/react";
 
 
 const SignupPage = () => {
@@ -8,7 +10,8 @@ const SignupPage = () => {
     const [user, setUser] = useState({
         Name: '',
         email: '',
-        password: ''
+        password: '',
+        role: ''
     });
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
@@ -52,6 +55,43 @@ const SignupPage = () => {
         }
     }
 
+    const [adminChecked, setAdminChecked] = useState(false);
+    const [patronChecked, setPatronChecked] = useState(false);
+  
+    const handleAdminChange = () => {
+      setAdminChecked(!adminChecked);
+      if(!adminChecked){
+        setUser({
+          ...user,
+          role: 'Admin'
+        });
+        setPatronChecked(false);
+      }else {
+        setUser(
+          {
+            ...user,
+            role: ""
+          }
+        )
+      }
+
+    };
+  
+    const handlePatronChange = () => {
+      setPatronChecked(!patronChecked);
+      if(!patronChecked){
+        setUser({
+          ...user,
+          role: 'Member'
+        });
+        setAdminChecked(false)
+      }else {
+        setUser({
+          ...user,
+          role: ""
+        })
+      }
+    }
     return ( 
         <>       
 <div class="bg-blue-100 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center">
@@ -84,6 +124,13 @@ const SignupPage = () => {
         </svg>
         <input type="password" id="password" value={user.password} name="password" class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full" placeholder="Password" onChange={handleChange}/>
       </div>
+      <div className="m-3">
+            <span className="text-sm">Select Role</span>
+              <div className="flex gap-2">
+              <Checkbox value="Admin" checked={adminChecked} onChange={handleAdminChange} >ADMIN</Checkbox>
+            <Checkbox value="Member" checked={patronChecked} onchange={handlePatronChange}>PATRON</Checkbox>
+              </div>
+          </div>
       
       <button type="submit" class=" bg-cyan-950 font-medium p-2 md:p-4 text-white uppercase w-full rounded hover:bg-cyan-700">sign up</button>
       <a href="/login" className="text-sm font-thin text-cyan-900  hover:text-cyan-500">Already registered? log in</a>

@@ -205,7 +205,7 @@ const Books = () => {
                         alt="Product"
                       />
                       <Button
-                        radius="full"
+                        radius="full" type="submit"
                         className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-20 ml-20"
                       >
                         Borrow

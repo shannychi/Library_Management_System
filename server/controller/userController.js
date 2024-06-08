@@ -62,6 +62,7 @@ module.exports = {
       const newUser = await new User({
         Name,
         email,
+        role,
         password: hashedPasssword,
       });
       newUser.save();

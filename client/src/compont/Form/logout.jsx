@@ -1,18 +1,19 @@
 import React from "react";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, cn} from "@nextui-org/react";
-
+import {useAuth} from "../Function/AuthContext"
 
 export default function LogOut() {
   
+    const logout = useAuth()
     const handleLogout = async () => {
         try {
           const response = await fetch('https://library-management-system-2ku8.onrender.com/user/logout', {
-            method: 'GET',
+            method: 'POST',
             credentials: 'include', 
           });
     
           if (response.ok) {
-            
+            logout();
             window.location.href = '/login';
           } else {
             console.error('Failed to log out');

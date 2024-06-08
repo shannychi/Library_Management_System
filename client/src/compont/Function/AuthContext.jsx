@@ -9,20 +9,20 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
  useEffect(() => {
-  const authCookie  = Cookies.get('token');
+  const authCookie  = Cookies.get('auth');
   if(authCookie) {
     setIsAuthenticated(true)
   }
  }, []);
 
  const login = () => {
-  Cookies.set('token', 'true', {
+  Cookies.set('auth', 'true', {
     expires: 7
   });
   setIsAuthenticated(true);
  };
  const logout = () => {
-  Cookies.set('token');
+  Cookies.set('auth');
   setIsAuthenticated(false);
  }
 

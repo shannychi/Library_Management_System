@@ -12,7 +12,7 @@ export default function LogOut() {
             credentials: 'include', 
           });
     
-          if (response.ok) {
+          if (response.status === 200) {
             logout();
             window.location.href = '/login';
           } else {

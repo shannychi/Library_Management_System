@@ -50,7 +50,7 @@ module.exports = {
   //register
   Signup: async (req, res, next) => {
     try {
-      const { email, password, Name } = req.body;
+      const { email, password, Name, role } = req.body;
       const user = await User.findOne({ email });
       if (user) {
         return res

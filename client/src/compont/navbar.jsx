@@ -8,7 +8,7 @@ import LogOut from "./Form/logout";
 
     export default function App() {
       const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-      const { isAuthenticated, logout } = useAuth();
+      const { isAuthenticated } = useAuth();
     
       const menuItems = [isAuthenticated ? (
         <div className="flex flex-col gap-1">
@@ -53,6 +53,7 @@ import LogOut from "./Form/logout";
               </Link>
             </NavbarItem>
           </NavbarContent>
+          
           ):(
           <NavbarContent justify="end">
             <NavbarItem className="hidden lg:flex">

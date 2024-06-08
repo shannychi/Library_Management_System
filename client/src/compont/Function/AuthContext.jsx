@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   if(authCookie) {
     setIsAuthenticated(true)
   }
+  setIsAuthenticated(false)
  }, []);
 
  const login = () => {

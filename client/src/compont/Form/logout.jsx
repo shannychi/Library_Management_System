@@ -4,7 +4,7 @@ import {useAuth} from "../Function/AuthContext"
 
 export default function LogOut() {
   
-    const logout = useAuth()
+    const {logout} = useAuth()
     const handleLogout = async () => {
         try {
           const response = await fetch('https://library-management-system-2ku8.onrender.com/user/logout', {

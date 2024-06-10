@@ -97,9 +97,9 @@ module.exports = {
     try {
       res.cookie("token", "", {
         httpOnly: true, 
-        // secure: process.env.NODE_ENV === "production", 
+        secure: process.env.NODE_ENV === "production", 
         expires: new Date(0), 
-        // sameSite: "None", 
+        sameSite: "None", 
       });
       return res.status(200).json({message: "you have successfully logged out"})
       

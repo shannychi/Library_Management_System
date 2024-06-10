@@ -113,11 +113,11 @@ returnBook: async(req, res, next) => {
       });
     }
 
-    if (!borrowedBook.active) {
-      return res.status(403).json({
-        message: "Book has already been returned",
-      });
-    }
+    // if (!borrowedBook.active) {
+    //   return res.status(403).json({
+    //     message: "Book has already been returned",
+    //   });
+    // }
 
     const book = await BookModel.findById(bookId);
 

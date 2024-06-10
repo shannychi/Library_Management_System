@@ -105,7 +105,7 @@ returnBook: async(req, res, next) => {
     const userId = req.userId;
     const { bookId } = req.params; // Destructure bookId from req.params
 
-    const borrowedBook = await returnBook.findOne({ userId, bookId });
+    const borrowedBook = await borrowBook.findOne({ userId, bookId });
 
     if (!borrowedBook) {
       return res.status(404).json({

@@ -113,12 +113,15 @@ module.exports = {
 
   logout: async (req, res, next) => {
     try {
-      res.clearCookies('token')
-      return res.status(200).json({message: "you have successfully logged out"})
-      
+      res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+      });
+      return res.status(200).json({ message: "You have successfully logged out" });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: "server error" });
+      res.status(500).json({ message: "Server error" });
     }
   },
 };

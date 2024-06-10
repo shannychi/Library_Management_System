@@ -22,7 +22,6 @@ export default function LogOut() {
             <Alert security="warning">Faild to log out</Alert>
           }
         } catch (error) {
-          navigate('/500')
           console.error('An error occurred during logout', error);
         }
       };

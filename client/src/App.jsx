@@ -12,6 +12,8 @@ import SignupPage from './compont/Form/signup'
 import UserProfile from './compont/pages/profile'
 import ServerError from './compont/pages/serverError'
 import BorrowBook from './compont/pages/Borrow'
+import Unauthorized from './compont/pages/unauthorized'
+import AdminRoute from './compont/Function/IsAdmin'
 
 function App() {
 
@@ -20,13 +22,19 @@ function App() {
     <Navbar/>
      <Routes>
       <Route path='/' element={<HomePage/>}/>
-     <Route path='/add-book' element={<AddBook/>}/>
+     <Route path='/add-book' element={
+      <AdminRoute>
+        <AddBook/>
+      </AdminRoute>
+     }/>
      <Route path='/books' element={<Books/>}/>
      <Route path='/login' element={<LoginPage/>}/>
      <Route path='/signup' element={<SignupPage/>}/>
      <Route path='/user' element={<UserProfile/>}/>
      <Route Path='/borrow/book' element={<BorrowBook/>}/>
      <Route path='/500' element={<ServerError/>}/>
+     <Route path='/unauthorized' element={<Unauthorized/>}/>
+
      </Routes>
      <Footer/>
    </AuthProvider>

@@ -47,6 +47,24 @@ module.exports = {
     }
   },
 
+  //get role
+  Role: async(req, res) => {
+     try{
+      const user = await User.findById(req.userId);
+      if(!user) {
+        return res.status(404).json({
+          message: 'user not found'
+        })
+      }
+      res.status(200).json({role: user.role})
+     } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        message: 'server error'
+      })
+     }
+  },
+
   //register
   Signup: async (req, res, next) => {
     try {
@@ -95,12 +113,7 @@ module.exports = {
 
   logout: async (req, res, next) => {
     try {
-      res.cookie("token", {
-        httpOnly: true, 
-        secure: process.env.NODE_ENV === "production", 
-        expires: new Date(0), 
-        sameSite: "None", 
-      });
+      res.clearCookies('token')
       return res.status(200).json({message: "you have successfully logged out"})
       
     } catch (err) {

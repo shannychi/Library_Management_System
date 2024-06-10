@@ -15,6 +15,7 @@ import LogOut from "./Form/logout";
           <Link href="/">Home</Link>
           <Link href="/user">Profile</Link>
           <Link href="/books">Book Store</Link>
+          <Link href="/add-book">Add Book</Link>
           <LogOut />
         </div>
       ) : (
@@ -50,6 +51,11 @@ import LogOut from "./Form/logout";
             <NavbarItem>
               <Link color="foreground" href="/user" className=" text-white underline" >
                 Profile
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Link color="foreground" href="/add-book" className=" text-white underline" >
+                Add Book
               </Link>
             </NavbarItem>
           </NavbarContent>

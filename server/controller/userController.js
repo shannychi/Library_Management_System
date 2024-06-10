@@ -6,6 +6,23 @@ const borrowedBook = require("../Model/borrowedBook");
 require("dotenv").config();
 
 module.exports = {
+   //get role
+   Role: async(req, res) => {
+    try{
+     const user = await User.findById(req.userId);
+     if(!user) {
+       return res.status(404).json({
+         message: 'user not found'
+       })
+     }
+     res.status(200).json({role: user.role})
+    } catch (error) {
+     console.error(error);
+     res.status(500).json({
+       message: 'server error'
+     })
+    }
+ },
   Login: async (req, res, next) => {
     try {
       const { email, password } = req.body;
@@ -47,23 +64,6 @@ module.exports = {
     }
   },
 
-  //get role
-  Role: async(req, res) => {
-     try{
-      const user = await User.findById(req.userId);
-      if(!user) {
-        return res.status(404).json({
-          message: 'user not found'
-        })
-      }
-      res.status(200).json({role: user.role})
-     } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        message: 'server error'
-      })
-     }
-  },
 
   //register
   Signup: async (req, res, next) => {

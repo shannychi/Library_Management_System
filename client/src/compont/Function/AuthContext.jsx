@@ -9,6 +9,22 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState(null);
 
+
+  const fetchUserRole = async () => {
+    try {
+      const response = await fetch('https://library-management-system-2ku8.onrender.com/user/role', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setRole(data.role);
+      }
+    } catch (error) {
+      console.error('Failed to fetch user role:', error);
+    }
+  };
+
  useEffect(() => {
   const authCookie  = Cookies.get('auth');
   if(authCookie) {
@@ -17,20 +33,7 @@ export const AuthProvider = ({ children }) => {
   }
  }, []);
 
- const fetchUserRole = async () => {
-  try {
-    const response = await fetch('https://library-management-system-2ku8.onrender.com/user/role', {
-      method: 'GET',
-      credentials: 'include',
-    });
-    if (response.ok) {
-      const data = await response.json();
-      setRole(data.role);
-    }
-  } catch (error) {
-    console.error('Failed to fetch user role:', error);
-  }
-};
+
 
  const login = (role) => {
   Cookies.set('auth', 'true', {
@@ -49,7 +52,7 @@ export const AuthProvider = ({ children }) => {
  }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, role }}>
       {children}
     </AuthContext.Provider>
   );

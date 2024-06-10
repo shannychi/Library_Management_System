@@ -49,7 +49,7 @@ export default function LogOut() {
           startContent=""
           onClick={handleLogout}
         >
-          Delete file
+          log out
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

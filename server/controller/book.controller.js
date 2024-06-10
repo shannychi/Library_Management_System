@@ -2,7 +2,7 @@ const Book = require('../routes/Book/bookRoute');
 const BookModel = require('../Model/books');
 const userModel = require('../Model/user');
 const borrowBook = require("../Model/borrowedBook");
-const returnBookModel = require('../Model/returnedBook')
+const returnBook = require('../Model/returnedBook')
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -105,7 +105,7 @@ returnBook: async(req, res, next) => {
     const userId = req.userId;
     const { bookId } = req.params; // Destructure bookId from req.params
 
-    const borrowedBook = await returnBookModel.findOne({ userId, bookId });
+    const borrowedBook = await returnBook.findOne({ userId, bookId });
 
     if (!borrowedBook) {
       return res.status(404).json({

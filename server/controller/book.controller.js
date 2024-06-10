@@ -101,34 +101,42 @@ console.log("userId:", userId);
 },
 
 returnBook: async(req, res, next) => {
-try {
-  const userId = req.userId;
-  const bookId = req.params;
-  const borrowedBook =  await returnBookModel.findOne({userId, bookId});
+  try {
+    const userId = req.userId;
+    const { bookId } = req.params; // Destructure bookId from req.params
 
-  if(borrowedBook && borrowedBook?.active) {
-    res.status(403).json({
-      message: "Book has been returned"
-    })
+    const borrowedBook = await returnBookModel.findOne({ userId, bookId });
+
+    if (!borrowedBook) {
+      return res.status(404).json({
+        message: "Borrowed book record not found",
+      });
+    }
+
+    if (!borrowedBook.active) {
+      return res.status(403).json({
+        message: "Book has already been returned",
+      });
+    }
+
+    const book = await BookModel.findById(bookId);
+
+    if (!book) {
+      return res.status(404).json({
+        message: "Sorry, we do not have this book or it may have been deleted",
+      });
+    }
+
+    // Update the borrowedBook to mark it as inactive (returned)
+    borrowedBook.active = false;
+    await borrowedBook.save();
+
+    res.status(200).json({ message: "Book returned successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 
-  const book = await BookModel.findById(bookId)
-  //if not book
-    if(!book) {
-     res.status(403).json({
-       message: "sorry We do not have this book or maybe deleted"
-     })
-    }
-    //check active
-    delete borrowedBook._id;
-    borrowedBook.active = false
-    await returnBookModel.findOneAndUpdate({userId, bookId, borrowedBook})
-
-    res.status(200).json({message: "Book returned sucessfully"})
-
-}catch(err) {
-  console.error(err)
-}
 },
  
 getTotalUserAndBook: async(req, res, next) => {

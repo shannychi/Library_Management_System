@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
 const AuthContext = createContext();
 
@@ -8,7 +8,6 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState(null);
-
 
   const fetchUserRole = async () => {
     try {
@@ -25,34 +24,30 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
- useEffect(() => {
-  const authCookie  = Cookies.get('auth');
-  if(authCookie) {
-    setIsAuthenticated(true)
-    fetchUserRole();
-  }
- }, []);
+  useEffect(() => {
+    const authCookie = Cookies.get('auth');
+    if (authCookie) {
+      setIsAuthenticated(true);
+      fetchUserRole();
+    }
+  }, []);
 
+  const login = (role) => {
+    Cookies.set('auth', 'true', {
+      expires: 7,
+    });
+    setIsAuthenticated(true);
+    setRole(role);
+  };
 
-
- const login = (role) => {
-  Cookies.set('auth', 'true', {
-    expires: 7
-  });
-  setIsAuthenticated(true);
-  setRole(role);
- };
-
-
-
- const logout = () => {
-  Cookies.remove('auth');
-  setIsAuthenticated(false);
-  setRole(null);
- }
+  const logout = () => {
+    Cookies.remove('auth');
+    setIsAuthenticated(false);
+    setRole(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, role }}>
+    <AuthContext.Provider value={{ isAuthenticated, role, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

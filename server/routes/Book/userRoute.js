@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { auth }= require('../../middware/auth')
 
-
 const userRoute = router;
 
 const { userController } = require("../../controller/index")
@@ -15,7 +14,7 @@ const { userController } = require("../../controller/index")
 
 //post add book
 userRoute.post("/login",userController.Login);
-userRoute.get('/role', auth, userController.Role)
+userRoute.get('/role', auth,  userController.Role)
 userRoute.post("/signup", userController.Signup);
 userRoute.get("/profile", auth, userController.profile)
 userRoute.post("/logout", userController.logout)

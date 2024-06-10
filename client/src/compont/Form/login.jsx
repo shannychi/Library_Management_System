@@ -40,7 +40,7 @@ const LoginPage = () => {
         setMessage(<Alert severity="error">{data.message}</Alert>); //incorrect password
       } else if (response.status === 200) {
         setMessage(<Alert severity="success">{data.message}</Alert>);
-        login();
+        login(data.role);
         navigate("/user");
       } else {
         setMessage(<Alert severity="error">An error occured!</Alert>);

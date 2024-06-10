@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Paginator } from "primereact/paginator";
 import Lazyloading from "../loading";
 import { useNavigate } from "react-router-dom";
-import { Message } from "primereact/message";
+import Alert from "@mui/material/Alert";
 import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 import Heardertext from "../hearder";
 import SearchInput from "../Function/searchinput";
@@ -77,16 +77,13 @@ const Books = () => {
           response.status === 404 ||
           response.status === 410
         ) {
-          setMessage(<Message severity="error" text={data.message} />);
+          setMessage(<Alert severity="error">{data.message}</Alert>);
         } else if (response.status === 200) {
-          setMessage(<Message severity="success" text={data.message} />);
+          setMessage(<Alert severity="success">{data.message}</Alert>);
           setBooks(books.map((book) => (book._id === data._id ? data : book)));
         } else {
           setMessage(
-            <Message
-              severity="error"
-              text="An error occoured! try again later"
-            />
+            <Alert severity="error">{data.message}</Alert>
           );
         }
       }
@@ -164,11 +161,12 @@ const Books = () => {
         />
 
       <div>
-        {message && <div>{message}</div>}
+     
        
         <motion.ul variants={container} initial="hidden" animate="show" className=" grid grid-cols-1 md:grid-cols-3 gap-8 m-10">
           {displayBooks.map((book, index) => (
             <motion.li variants={item} key={index}>
+                 {message && <div>{message}</div>}
               <form onSubmit={(e) => borrowedBook(e, book._id)}>
                 <Card className="py-4">
                   <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">

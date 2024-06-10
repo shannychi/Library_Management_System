@@ -91,7 +91,7 @@ console.log("userId:", userId);
       userId, bookId, borrowedDate: new Date(),
       active: true
     });
-     return res.status(200).json(`you have sucessfully borrowed book ${book.book_name}`)
+     return res.status(200).json({message: `you have sucessfully borrowed book ${book.book_name}`})
    }
    catch(err) {
     console.log("error borrowing books", err)
@@ -131,7 +131,7 @@ returnBook: async(req, res, next) => {
     borrowedBook.active = false;
     await borrowedBook.save();
 
-    res.status(200).json({ message: "Book returned successfully" });
+    return res.status(200).json({ message: "Book returned successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });

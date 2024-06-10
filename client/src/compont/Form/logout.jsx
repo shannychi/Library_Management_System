@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, cn} from "@nextui-org/react";
 import {useAuth} from "../Function/AuthContext"
+import { Alert } from "@mui/material";
 
 
 export default function LogOut() {
@@ -18,9 +19,10 @@ export default function LogOut() {
             logout();
             navigate('/login');
           } else {
-            console.error('Failed to log out');
+            <Alert security="warning">Faild to log out</Alert>
           }
         } catch (error) {
+          navigate('/500')
           console.error('An error occurred during logout', error);
         }
       };

@@ -72,6 +72,15 @@ console.log("userId:", userId);
      return res.status(403).json({message: `check back later, ${book.book_name} is not avaiable now.`})
     }
 
+
+    const activeBorrowedCount = await borrowBook.countDocuments({ userId, active: true});
+
+    if(activeBorrowedCount >= 3) {
+      return res.status(403).json({
+        message:  "You have reached the limit of 3 borrowed books. Please return a book before borrowing another one."
+      })
+    }
+
     const book = await BookModel.findById(bookId)
     if(!book) {
      res.status(410).json({
@@ -113,11 +122,11 @@ returnBook: async(req, res, next) => {
       });
     }
 
-    // if (!borrowedBook.active) {
-    //   return res.status(403).json({
-    //     message: "Book has already been returned",
-    //   });
-    // }
+    if (!borrowedBook.active) {
+      return res.status(403).json({
+        message: "Book has already been returned",
+      });
+    }
 
     const book = await BookModel.findById(bookId);
 

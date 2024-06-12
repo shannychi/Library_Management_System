@@ -164,9 +164,10 @@ const Books = () => {
      
        
         <motion.ul variants={container} initial="hidden" animate="show" className=" grid grid-cols-1 md:grid-cols-3 gap-8 m-10">
+        {message && <div>{message}</div>}
           {displayBooks.map((book, index) => (
             <motion.li variants={item} key={index}>
-                 {message && <div>{message}</div>}
+                 
               <form onSubmit={(e) => borrowedBook(e, book._id)}>
                 <Card className="py-4">
                   <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">

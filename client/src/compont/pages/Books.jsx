@@ -4,7 +4,7 @@ import Lazyloading from "../loading";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
-import Heardertext from "../hearder";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure} from "@nextui-org/react";
 import SearchInput from "../Function/searchinput";
 import { motion } from "framer-motion";
 
@@ -15,6 +15,7 @@ const Books = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [message, setMessage] = useState("");
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const [newBook, setNewBook] = useState({
     book_name: "",
     author_name: "",
@@ -150,10 +151,8 @@ const Books = () => {
   return (
     <div className="">
       <SearchInput value = {searchQuery} onChange={handleSearch}/> 
-      <Heardertext text1="welcome to book store" />
-      
         <Paginator
-          className="gap-5 h-20 w-full mt-5 lg:mt-0 "
+          className="gap-5 h-20 w-full mt-2 lg:mt-0 "
           first={first}
           rows={5}
           totalRecords={200}
@@ -200,11 +199,11 @@ const Books = () => {
                     <div className="flex gap-2">
                       <Image
                         className="object-cover rounded-xl h-40 w-40"
-                        src={`https://library-management-system-2ku8.onrender.com${book.cover_image}`}
+                        src={`https://library-management-system-2ku8.onrender.com${book.cover_image.startsWith('/') ? book.cover_image : `/${book.cover_image}`}`}
                         alt="Product"
                       />
                       <Button
-                        radius="full" type="submit"
+                        radius="full" onPress={onOpen}
                         className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-20 ml-20"
                       >
                         Borrow

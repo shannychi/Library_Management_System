@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 const AddBook = () => {
   const [book, setBook] = useState({
@@ -9,6 +10,7 @@ const AddBook = () => {
     publisher: "",
     cover_image: null,
   });
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   // Handle change
@@ -39,13 +41,17 @@ const AddBook = () => {
         body: formData,
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        navigate("/login");
-      } else {
-        navigate("/books");
+        setMessage(<Alert severity="warning">{data.message}</Alert>)
+      } else if (response.status == 200) {
+       setMessage(<Alert severity="success">{data.message}</Alert>)
       }
-      const responseData = await response.json();
-      console.log(responseData);
+      else {
+       setMessage(<Alert severity="warning">Server error</Alert>)
+      }   
+  
     } catch (err) {
       console.error("Error submitting form:", err);
     }
@@ -55,6 +61,7 @@ const AddBook = () => {
     <>
       <div className="bg-green-200 min-h-screen flex items-center">
         <div className="bg-white p-10 md:w-2/3 lg:w-1/2 mx-auto rounded">
+        {message && <p>{message}</p>}
           <form onSubmit={handleFormSubmit}>
             <div className="flex items-center mb-5">
               <label

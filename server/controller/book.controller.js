@@ -7,7 +7,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/uploads/'); // specify the upload directory
+    cb(null, 'public/uploads/'); // specify the upload directory
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // unique file names
@@ -34,7 +34,7 @@ module.exports = {
           author_name,
           isbn,
           publisher,
-          cover_image: `/uploads/${req.file.file}` // Adjust the path as necessary
+          cover_image: `${req.file.file}` // Adjust the path as necessary
         });
         await newBook.save();
         console.log(newBook);

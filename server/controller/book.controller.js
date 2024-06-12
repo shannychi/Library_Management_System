@@ -34,7 +34,7 @@ module.exports = {
           author_name,
           isbn,
           publisher,
-          cover_image: `${req.file.file}` // Adjust the path as necessary
+          cover_image: `/public/uploads/${req.file.file}` // Adjust the path as necessary
         });
         await newBook.save();
         console.log(newBook);

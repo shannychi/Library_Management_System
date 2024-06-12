@@ -52,13 +52,17 @@ module.exports = {
   //register
   Signup: async (req, res, next) => {
     try {
-      const { email, password, Name, role } = req.body;
+      const { email, password, Name} = req.body;
       const user = await User.findOne({ email });
       if (user) {
         return res
           .status(409)
           .json({ message: "User already exits with this email" });
       }
+
+      const isFirstUser = (await User.countDocuments({})) === 0;
+      const role = isFirstUser ? 'Admin' : 'Member'
+      
       const hashedPasssword = await bcrypt.hash(password, 10);
 
       const newUser = await new User({

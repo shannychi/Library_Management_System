@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 const ServerError = () => {
   return (
     <div class="bg-gray-100 px-2 text-center">
-      <Link to="/" className=" absolute left-0">
-        <button
-          class="cursor-pointer border-2  text-white h-10 rounded-3xl px-4 bg-green-300  duration-200 hover:scale-125 active:scale-100"
-          title="Go Back"
-        >
-            Go back
-        </button>
-      </Link>
+       <div className="pt-6 text-base font-semibold leading-7">
+                    <p className="font-sans text-red-500 text-md hover:text-red-800">
+                        <a href="/" className="absolute text-cyan-800">&larr; Home</a>
+                    </p>
+                </div>
       <div class="h-screen flex flex-col justify-center items-center">
         <h1 class="text-8xl font-extrabold text-red-500">500</h1>
         <p class="text-4xl font-medium text-gray-800">Internal Server Error</p>

@@ -68,10 +68,11 @@ const Books = () => {
           body: JSON.stringify(newBook),
         }
       );
+      const data = await response.json();
       if (!response.ok) {
-        navigate("/login");
+        setMessage(<Alert severity="error">{data.message}</Alert>)
       } else {
-        const data = await response.json();
+       
         if (
           response.status === 403 ||
           response.status === 404 ||
@@ -162,15 +163,19 @@ const Books = () => {
 
       <div>
      
+     
        
         <motion.ul variants={container} initial="hidden" animate="show" className=" grid grid-cols-1 md:grid-cols-3 gap-8 m-10">
-        {message && <div>{message}</div>}
+        
           {displayBooks.map((book, index) => (
             <motion.li variants={item} key={index}>
                  
               <form onSubmit={(e) => borrowedBook(e, book._id)}>
                 <Card className="py-4">
                   <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                    <div>
+                    {message && <div>{message}</div>}
+                    </div>
                     <h3 class="text-xl font-bold text-gray-900 mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 ">
                       {book.book_name}
                     </h3>

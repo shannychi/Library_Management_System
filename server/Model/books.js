@@ -8,6 +8,7 @@ const book = new Schema({
     isbn: {type: String, required: true},
     publisher: {type: String, required: true},
     genres: {type: String, require: true},
+    description: {type: String, require: true},
     quantity: {type: Number, default: 10}   
 }, {timestamps: true})
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
+import { Textarea, Select, SelectItem } from "@nextui-org/react";
 
 const AddBook = () => {
   const [book, setBook] = useState({
@@ -8,9 +9,11 @@ const AddBook = () => {
     author_name: "",
     isbn: "",
     publisher: "",
+    description: "",
+    genres: "",
     cover_image: null,
   });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   // Handle change
@@ -30,38 +33,51 @@ const AddBook = () => {
     formData.append("author_name", book.author_name);
     formData.append("isbn", book.isbn);
     formData.append("publisher", book.publisher);
+    formData.append("genres", book.genres);
+    formData.append("description", book.description);
     if (book.cover_image) {
       formData.append("cover_image", book.cover_image);
     }
 
     try {
-      const response = await fetch("https://library-management-system-2ku8.onrender.com/book/add-book", {
-        method: "POST",
-        credentials: "include",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://library-management-system-2ku8.onrender.com/book/add-book",
+        {
+          method: "POST",
+          credentials: "include",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        setMessage(<Alert severity="warning">{data.message}</Alert>)
+        setMessage(<Alert severity="warning">{data.message}</Alert>);
       } else if (response.status == 200) {
-       setMessage(<Alert severity="success">{data.message}</Alert>)
+        setMessage(<Alert severity="success">{data.message}</Alert>);
+      } else {
+        setMessage(<Alert severity="warning">Server error</Alert>);
       }
-      else {
-       setMessage(<Alert severity="warning">Server error</Alert>)
-      }   
-  
     } catch (err) {
       console.error("Error submitting form:", err);
     }
   };
 
+  const BookGenres = [
+    {key: "Literary-Fiction", label: "Literary Fiction"},
+    {key: "Mystery", label: "Mystery"},
+    {key: "Thriller", label: "Thriller"},
+    {key: "Horror", label: "Horror"},
+    {key: "Science-Fiction", label: "Science Fiction"},
+    {key: "Romance", label: "Romance"},
+    {key: "Comdey", label: "Comdey"},
+  ]
+
   return (
     <>
       <div className="bg-green-200 min-h-screen flex items-center">
         <div className="bg-white p-10 md:w-2/3 lg:w-1/2 mx-auto rounded">
-        {message && <p>{message}</p>}
+          {message && <p>{message}</p>}
           <form onSubmit={handleFormSubmit}>
             <div className="flex items-center mb-5">
               <label
@@ -130,6 +146,35 @@ const AddBook = () => {
                 onChange={handleChange}
                 className="border-b-2 border-gray-400 flex-1 py-2 placeholder-gray-300 outline-none focus:border-green-400"
               />
+            </div>
+
+            <div>
+              <Textarea
+                label="Description"
+                placeholder="Enter your description"
+                className="max-w-xs"
+                name="description"
+                value={book.description}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="mt-3">
+            <Select
+      isRequired
+      label="Genres"
+      placeholder="Select book genres"
+      defaultSelectedKeys={["cat"]}
+      className="max-w-xs"
+      name="genres"
+      value={book.genres}
+    >
+      {BookGenres.map((BookGenres) => (
+        <SelectItem key={BookGenres.key}>
+          {BookGenres.label}
+        </SelectItem>
+      ))}
+    </Select>
             </div>
             <div className="mx-auto max-w-xs">
               <label

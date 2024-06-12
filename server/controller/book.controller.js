@@ -29,12 +29,14 @@ module.exports = {
       }
 
       try {
-        const { book_name, author_name, isbn, publisher } = req.body;
+        const { book_name, author_name, isbn, publisher, genres, description } = req.body;
         const newBook = new BookModel({
           book_name,
           author_name,
           isbn,
           publisher,
+          description,
+          genres,
           cover_image: `/uploads/${req.file.filename}` //
         });
         await newBook.save();

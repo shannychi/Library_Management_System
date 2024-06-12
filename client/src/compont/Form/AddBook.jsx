@@ -168,10 +168,11 @@ const AddBook = () => {
       className="max-w-xs"
       name="genres"
       value={book.genres}
+      onChange={handleChange}
     >
-      {BookGenres.map((BookGenres) => (
-        <SelectItem key={BookGenres.key}>
-          {BookGenres.label}
+      {BookGenres.map((genres) => (
+        <SelectItem key={genres.key}>
+          {genres.label}
         </SelectItem>
       ))}
     </Select>

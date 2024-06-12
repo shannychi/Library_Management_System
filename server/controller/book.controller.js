@@ -1,11 +1,10 @@
+const path = require('path')
 const Book = require('../routes/Book/bookRoute');
 const BookModel = require('../Model/books');
 const userModel = require('../Model/user');
 const borrowBook = require("../Model/borrowedBook");
 const returnBook = require('../Model/returnedBook')
 const multer = require('multer');
-const path = require('path')
-
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -36,7 +35,7 @@ module.exports = {
           author_name,
           isbn,
           publisher,
-          cover_image: req.file.filename //
+          cover_image: `/uploads/${req.file.filename}` //
         });
         await newBook.save();
         console.log(newBook);

@@ -199,11 +199,11 @@ const Books = () => {
                     <div className="flex gap-2">
                       <Image
                         className="object-cover rounded-xl h-40 w-40"
-                        src={`https://library-management-system-2ku8.onrender.com${book.cover_image.startsWith('/') ? book.cover_image : `/${book.cover_image}`}`}
+                        src={`https://library-management-system-2ku8.onrender.com${book.cover_image}`}
                         alt="Product"
                       />
                       <Button
-                        radius="full" onPress={onOpen}
+                        radius="full"  type="submit"
                         className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg mt-20 ml-20"
                       >
                         Borrow

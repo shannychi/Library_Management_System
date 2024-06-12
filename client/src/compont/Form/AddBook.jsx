@@ -75,8 +75,8 @@ const AddBook = () => {
 
   return (
     <>
-      <div className="bg-green-200 min-h-screen flex items-center">
-        <div className="bg-white p-10 md:w-2/3 lg:w-1/2 mx-auto rounded">
+      <div className=" min-h-screen flex items-center m-10">
+        <div className="bg-white  shadow-large p-10 md:w-2/3 lg:w-1/2 mx-auto rounded">
           {message && <p>{message}</p>}
           <form onSubmit={handleFormSubmit}>
             <div className="flex items-center mb-5">

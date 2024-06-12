@@ -148,6 +148,7 @@ const Books = () => {
                     {book.book_name}
                   </h3>
                   <p className="text-gray-900 font-bold text-large">By {book.author_name}</p>
+                  <p className="text-green-900 font-bold text-xs "> {book.genres}</p>
                   <p className="text-gray-900 text-sm mt-2">
                     Available books <span className="text-green-500 font-semibold">{book.quantity}</span>
                   </p>
@@ -179,7 +180,7 @@ const Books = () => {
                             <ModalHeader className="flex flex-col gap-1">{selectedBook?.book_name}</ModalHeader>
                             <ModalBody>
                               <div>{message && <div>{message}</div>}</div>
-                              <p>{selectedBook?.genres}</p>
+                              <p className="text-green-500">{selectedBook?.genres}</p>
                               <p>{selectedBook?.description}</p>
                             </ModalBody>
                             <ModalFooter>

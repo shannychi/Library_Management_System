@@ -8,7 +8,7 @@ const path = require('path')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'uploads')); 
+    cb(null, path.join(__dirname, 'public')); 
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // unique file names
@@ -35,7 +35,7 @@ module.exports = {
           author_name,
           isbn,
           publisher,
-          cover_image: `/uploads/${req.file.filename }`//
+          cover_image: req.file.filename //
         });
         await newBook.save();
         console.log(newBook);

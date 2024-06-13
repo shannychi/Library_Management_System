@@ -1,10 +1,11 @@
 const path = require('path')
+const multer = require('multer');
 const Book = require('../routes/Book/bookRoute');
 const BookModel = require('../Model/books');
 const userModel = require('../Model/user');
 const borrowBook = require("../Model/borrowedBook");
 const returnBook = require('../Model/returnedBook')
-const multer = require('multer');
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

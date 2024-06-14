@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import Lazyloading from "../loading";
 import Go3 from "../../assets/sad.png";
+import { Buffer } from "buffer";
+
+
+
 
 const UserProfile = () => {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
@@ -117,7 +121,7 @@ const UserProfile = () => {
                   <div className="w-16 p-2 shrink-0">
                     <img
                       className="object-cover w-full h-full"
-                      src={`https://library-management-system-2ku8.onrender.com${borrowedBook.bookId.cover_image}`}
+                      src={`data:${borrowedBook.bookId.cover_image_mimetype};base64,${Buffer.from(borrowedBook.bookId.cover_image).toString('base64')}`}
                       alt="Product"
                     />
                   </div>

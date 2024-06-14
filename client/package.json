@@ -16,6 +16,7 @@
     "@nextui-org/react": "^2.4.1",
     "axios": "^1.7.2",
     "browser-router": "^0.2.0",
+    "buffer": "^6.0.3",
     "framer-motion": "^11.2.10",
     "install": "^0.13.0",
     "js-cookie": "^3.0.5",

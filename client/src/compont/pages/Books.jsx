@@ -7,6 +7,7 @@ import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import SearchInput from "../Function/searchinput";
 import { motion } from "framer-motion";
+import { Buffer } from 'buffer'
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -160,7 +161,7 @@ const Books = () => {
                   <div className="flex gap-2">
                     <Image
                       className="object-cover rounded-xl h-40 w-40"
-                      src={`https://library-management-system-2ku8.onrender.com${book.cover_image}`}
+                      src={`data:${book.cover_image_mimetype};base64,${Buffer.from(book.cover_image).toString('base64')}`}
                       alt="Product"
                     />
                     <Button

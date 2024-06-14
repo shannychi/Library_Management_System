@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const fileUpload = require('express-fileupload');
 const path = require('path')
 
 const BookRoutes = require('./routes/Book/bookRoute');
@@ -31,6 +32,7 @@ app.use(cors(corsOptions)); // Use CORS middleware with the options object
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
+app.use(fileUpload())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));

@@ -32,10 +32,10 @@ app.use(cors(corsOptions)); // Use CORS middleware with the options object
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(fileUpload())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload())
 
 // Database connection
 const mongoDb = process.env.MONGODB_URL

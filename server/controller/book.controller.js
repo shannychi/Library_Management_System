@@ -17,7 +17,7 @@ module.exports = {
     }
 
     const coverImage = req.files.cover_image;
-    const uploadPath = path.join(__dirname, '../public', Date.now() + '-' + coverImage.name);
+    const uploadPath = path.join(__dirname, 'public/uploads/', + coverImage.name);
 
     coverImage.mv(uploadPath, async (err) => {
       if (err) {
@@ -33,7 +33,7 @@ module.exports = {
           publisher,
           description,
           genres,
-          cover_image: path.basename(uploadPath) // Save only the file name
+          cover_image: coverImage.name
         });
 
         await newBook.save();

@@ -7,7 +7,7 @@ import { Card, CardHeader, CardBody, Image, Button } from "@nextui-org/react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 import SearchInput from "../Function/searchinput";
 import { motion } from "framer-motion";
-import { Buffer } from 'buffer'
+import { Buffer } from 'buffer';
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -21,7 +21,6 @@ const Books = () => {
   const [rows, setRows] = useState(9);
   const navigate = useNavigate();
 
-  // Fetch Book Api to display books
   useEffect(() => {
     const fetchBooksData = async () => {
       try {
@@ -49,7 +48,6 @@ const Books = () => {
     fetchBooksData();
   }, [navigate]);
 
-  // Fetch post request for user to borrow book
   const borrowedBook = async (bookId) => {
     try {
       const response = await fetch(
@@ -88,7 +86,6 @@ const Books = () => {
     setFirst(event.first);
   };
 
-  // Search method
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -109,7 +106,6 @@ const Books = () => {
     return <div>{<Lazyloading />}</div>;
   }
 
-  // Animation
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -122,8 +118,8 @@ const Books = () => {
   };
 
   const item = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1 },
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
@@ -142,7 +138,7 @@ const Books = () => {
         <motion.ul variants={container} initial="hidden" animate="show" className="grid grid-cols-1 md:grid-cols-3 gap-8 m-10">
           {displayBooks.map((book, index) => (
             <motion.li variants={item} key={index}>
-              <Card className="py-4">
+              <Card className="card">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                   <div></div>
                   <h3 className="text-xl font-bold text-gray-900 mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">

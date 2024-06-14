@@ -132,7 +132,7 @@ const Books = () => {
       <Paginator
         className="gap-5 h-20 w-full mt-2 lg:mt-0"
         first={first}
-        rows={5}
+        rows={10}
         totalRecords={200}
         onPageChange={onPageChange}
         template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
@@ -206,7 +206,7 @@ const Books = () => {
       <Paginator
         className="gap-5 h-20 w-full mt-2 lg:mt-0"
         first={first}
-        rows={5}
+        rows={10}
         totalRecords={200}
         onPageChange={onPageChange}
         template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"

@@ -31,7 +31,7 @@ const HomePage = () => {
     class="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-10 lg:ml-20 xl:mt-24 xl:ml-12">
     
     <div class="flex flex-col p-12 md:px-16">
-        <h2 class="text-2xl font-medium uppercase text-cyan-900 lg:text-4xl">Your Gateway to Knowledge</h2>
+        <h2 class="text-1xl font-medium uppercase text-cyan-900 lg:text-4xl">Your Gateway to Knowledge</h2>
         <p class="mt-4">
         Our comprehensive library website offers a vast collection of digital resources, including e-books, audiobooks, academic journals, and multimedia materials. With user-friendly search tools, personalized recommendations, and access to exclusive content.
         </p>

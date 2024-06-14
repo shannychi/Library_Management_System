@@ -78,7 +78,7 @@ const AddBook = () => {
       <div className=" min-h-screen flex items-center m-10">
         <div className="bg-white  shadow-large p-10 md:w-2/3 lg:w-1/2 mx-auto rounded">
           {message && <p>{message}</p>}
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit} encType="multipart/form-data">
             <div className="flex items-center mb-5">
               <label
                 htmlFor="name"

@@ -18,7 +18,7 @@ const Books = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedBook, setSelectedBook] = useState(null);
   const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(10);
+  const [rows, setRows] = useState(9);
   const navigate = useNavigate();
 
   // Fetch Book Api to display books
@@ -132,7 +132,7 @@ const Books = () => {
       <Paginator
         className="gap-5 h-20 w-full mt-2 lg:mt-0"
         first={first}
-        rows={10}
+        rows={9}
         totalRecords={200}
         onPageChange={onPageChange}
         template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
@@ -206,7 +206,7 @@ const Books = () => {
       <Paginator
         className="gap-5 h-20 w-full mt-2 lg:mt-0"
         first={first}
-        rows={10}
+        rows={9}
         totalRecords={200}
         onPageChange={onPageChange}
         template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"

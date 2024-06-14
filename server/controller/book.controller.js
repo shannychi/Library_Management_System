@@ -10,20 +10,23 @@ const returnBook = require('../Model/returnedBook')
 module.exports = {
   //add book to database
   addBooks: async (req, res, next) => {
-    if (!req.files || !req.files.cover_image) {
-      return res.status(400).json({ message: "No file selected!" });
-    }
-
-    const coverImage = req.files.cover_image;
-    const uploadPath =  '../public/uploads/' + coverImage.name;
-
-    coverImage.mv(uploadPath, async (err) => {
-      if (err) {
-        return res.status(500).json({ message: 'File upload failed', error: err });
+    try {
+      if (!req.files || !req.files.cover_image) {
+        return res.status(400).json({ message: "No file selected!" });
       }
+
+      const coverImage = req.files.cover_image;
+      const coverImageData = coverImage.data;
+      const coverImageMimeType = coverImage.mimetype;
 
       try {
         const { book_name, author_name, isbn, publisher, genres, description } = req.body;
+
+        // Validate required fields
+        if (!book_name || !author_name || !isbn || !publisher || !genres || !description) {
+          return res.status(400).json({ message: 'All fields are required!' });
+        }
+
         const newBook = new BookModel({
           book_name,
           author_name,
@@ -31,18 +34,25 @@ module.exports = {
           publisher,
           description,
           genres,
-          cover_image: coverImage.name
+          cover_image: coverImageData, // Save the file data
+          cover_image_mimetype: coverImageMimeType // Save the file mime type
         });
 
         await newBook.save();
-        console.log(newBook);
+        console.log('Book added successfully:', newBook);
         return res.status(200).json({ message: 'Book added successfully!', book: newBook });
       } catch (err) {
-        console.log("Error adding book:", err);
-        return res.status(500).json({ message: 'Server error' });
+        console.error('Error adding book:', err);
+        return res.status(500).json({ message: 'Server error', error: err.message });
       }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      return res.status(500).json({ message: 'Unexpected server error', error: err.message });
+    }
 
-    });
+   
+
+  
   },
 
   // allbook

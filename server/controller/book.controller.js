@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path')
 const multer = require('multer');
 const Book = require('../routes/Book/bookRoute');
@@ -7,26 +8,20 @@ const borrowBook = require("../Model/borrowedBook");
 const returnBook = require('../Model/returnedBook')
 
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public')); 
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // unique file names
-  },
-});
-
-const upload = multer({ storage: storage }).single('cover_image');
 
 module.exports = {
   //add book to database
   addBooks: async (req, res, next) => {
-    upload(req, res, async (err) => {
+    if (!req.files || !req.files.cover_image) {
+      return res.status(400).json({ message: "No file selected!" });
+    }
+
+    const coverImage = req.files.cover_image;
+    const uploadPath = path.join(__dirname, 'public', Date.now() + '-' + coverImage.name);
+
+    coverImage.mv(uploadPath, async (err) => {
       if (err) {
-        return res.status(400).json({ message: err.message });
-      }
-      if (!req.file) {
-        return res.status(400).json({ message: "No file selected!" });
+        return res.status(500).json({ message: 'File upload failed', error: err });
       }
 
       try {
@@ -38,8 +33,9 @@ module.exports = {
           publisher,
           description,
           genres,
-          cover_image: req.file.filename
+          cover_image: path.basename(uploadPath) // Save only the file name
         });
+
         await newBook.save();
         console.log(newBook);
         return res.status(200).json({ message: 'Book added successfully!', book: newBook });
@@ -47,6 +43,7 @@ module.exports = {
         console.log("Error adding book:", err);
         return res.status(500).json({ message: 'Server error' });
       }
+
     });
   },
 

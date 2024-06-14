@@ -15,7 +15,7 @@ module.exports = {
     }
 
     const coverImage = req.files.cover_image;
-    const uploadPath = path.join(__dirname, 'public/uploads/', + coverImage.name);
+    const uploadPath =  '../public/uploads/' + coverImage.name;
 
     coverImage.mv(uploadPath, async (err) => {
       if (err) {

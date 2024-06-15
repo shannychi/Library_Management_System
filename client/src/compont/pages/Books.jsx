@@ -103,7 +103,7 @@ const Books = () => {
   const displayBooks = filteredBooks.slice(first, first + rows);
 
   if (loading) {
-    return <div>{<Lazyloading />}</div>;
+    return <div className=" h-screen">{<Lazyloading />}</div>;
   }
 
   const container = {

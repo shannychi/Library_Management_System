@@ -66,7 +66,7 @@ const UserProfile = () => {
   };
 
   if (loading) {
-    return <div>{<Lazyloading />}</div>;
+    return <div className=" h-screen">{<Lazyloading />}</div>;
   }
 
   if (error) {

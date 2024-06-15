@@ -24,7 +24,7 @@ var corsOptions = {
       callback(new Error('Not allowed by CORS'))
     }
   },
-  credentials: true // Allow credentials
+  credentials: true,// Allow credentials
 };
 
 app.use(cors(corsOptions)); // Use CORS middleware with the options object

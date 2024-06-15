@@ -37,8 +37,8 @@ module.exports = {
 
       res.cookie("token", token, {
         httpOnly: true,
-        secure:  process.env.NODE_ENV === 'production',
-        sameSite: 'None',
+        // secure:  process.env.NODE_ENV === 'production',
+        // sameSite: 'None',
         maxAge:1000 * 60 * 60 * 24,
       });
       return res.status(200).json({ message: "Login successful" });
@@ -121,8 +121,8 @@ module.exports = {
     try {
       res.cookie("token", "", {
         httpOnly: true,
-        secure:  process.env.NODE_ENV === 'production',
-        sameSite: 'None',
+        // secure:  process.env.NODE_ENV === 'production',
+        // sameSite: 'None',
         maxAge:  0,
       });
       return res.status(200).json({ message: "You have successfully logged out" });

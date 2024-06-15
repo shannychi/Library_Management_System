@@ -119,10 +119,11 @@ module.exports = {
 
   logout: async (req, res, next) => {
     try {
-      res.clearCookie('token', {
+      res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "None",
+        secure:  process.env.NODE_ENV === 'production',
+        sameSite: 'None',
+        maxAge:  0,
       });
       return res.status(200).json({ message: "You have successfully logged out" });
     } catch (err) {

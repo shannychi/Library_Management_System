@@ -29,7 +29,7 @@ var whitelist = ['http://localhost:5173', 'https://library-management-system2.ne
 
 const corsOptions = {
   origin: whitelist,
-  credential: true,
+  credentials: true,
 };
 
 app.use(cors(corsOptions)); // Use CORS middleware with the options object

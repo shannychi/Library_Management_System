@@ -15,16 +15,21 @@ const port = process.env.PORT || 8000
 
 // CORS setup
 var whitelist = ['http://localhost:5173', 'https://library-management-system2.netlify.app'];
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // Allow non-browser requests
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  credentials: true,// Allow credentials
+// var corsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin) return callback(null, true); // Allow non-browser requests
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   },
+//   credentials: true,// Allow credentials
+// };
+
+const corsOptions = {
+  origin: whitelist,
+  credential: true,
 };
 
 app.use(cors(corsOptions)); // Use CORS middleware with the options object

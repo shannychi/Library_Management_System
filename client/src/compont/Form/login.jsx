@@ -42,7 +42,7 @@ const LoginPage = () => {
       } else if (response.status === 200) {
         setMessage(<Alert severity="success">{data.message}</Alert>);
         login(data.role);
-        setRedirectToProfile(true); // set redirection state to true
+        navigate('/user') // set redirection state to true
       } else {
         setMessage(<Alert severity="error">An error occurred!</Alert>);
       }
@@ -52,9 +52,9 @@ const LoginPage = () => {
     }
   };
 
-  if (redirectToProfile) {
-    return <Navigate to="/user" />; // navigate to user profile page
-  }
+  // if (redirectToProfile) {
+  //   return <Navigate to="/user" />; // navigate to user profile page
+  // }
 
   return (
     <div className="bg-white dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center">
